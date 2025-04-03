@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { staffData } = require("../utils/dataLoader");
 
+// Login Controller
 const login = (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -11,7 +12,7 @@ const login = (req, res, next) => {
     if (!user) {
       const error = new Error("Invalid email or password");
       error.statusCode = 401;
-      throw error;
+      return next(error);
     }
 
     const token = jwt.sign(
@@ -26,6 +27,7 @@ const login = (req, res, next) => {
   }
 };
 
+// Logout Controller
 const logout = (req, res) => {
   res.json({ message: "Logout successful" });
 };

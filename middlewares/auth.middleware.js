@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 
+// Authenticates User by JWT
 const authenticateUser = (req, res, next) => {
   const authHeader = req.header("Authorization");
   if (!authHeader) {
@@ -23,6 +24,8 @@ const authenticateUser = (req, res, next) => {
     return next(error);
   }
 };
+
+// Checks if authorized user has admin priviledge
 const isAdmin = (req, res, next) => {
   if (req.user?.role !== "admin") {
     const error = new Error("Access Forbidden: Admins only");
@@ -32,6 +35,7 @@ const isAdmin = (req, res, next) => {
   next();
 };
 
+// Checks if authorized user has super admin priviledge
 const isSuperAdmin = (req, res, next) => {
   if (req.user?.role !== "superAdmin") {
     const error = new Error("Access Forbidden: Superadmins only");
@@ -42,6 +46,7 @@ const isSuperAdmin = (req, res, next) => {
   next();
 };
 
+// Checks if an authorized user has admin or superadmin priviledge
 const isAdminOrSuperAdmin = (req, res, next) => {
   const userRole = req.user?.role;
 

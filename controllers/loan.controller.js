@@ -1,5 +1,6 @@
 const deleteLoanFromFile = require("../utils/deleteLoan");
 
+// Delete Loan by loanID Controller
 const deleteLoan = (req, res, next) => {
   const { loanId } = req.params;
 

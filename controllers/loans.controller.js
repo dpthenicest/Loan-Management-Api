@@ -1,5 +1,6 @@
 const { loansData } = require("../utils/dataLoader");
 
+// Fetch Loan (filters loan by status and user role) Controller
 const getLoans = (req, res, next) => {
   try {
     const { status } = req.query;
@@ -39,6 +40,7 @@ const getLoans = (req, res, next) => {
   }
 };
 
+// Fetch loans by email Controller
 const getUserLoans = (req, res, next) => {
   const { userEmail } = req.params;
   const userRole = req.user?.role; 
@@ -69,7 +71,7 @@ const getUserLoans = (req, res, next) => {
 
 module.exports = { getUserLoans };
 
-
+// Fetch Expired Loans Controller
 const getExpiredLoans = (req, res, next) => {
   try {
     const currentDate = new Date();
